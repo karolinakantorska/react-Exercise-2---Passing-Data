@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MovieList from "./list.js"
+
 
 /*
 Display a list of movies where each movie contains a list of users that favorited it.
@@ -8,7 +10,7 @@ Display a list of movies where each movie contains a list of users that favorite
 For detailed instructions, refer to instructions.md.
 */
 
-const profiles = [
+const profilesArray = [
   {
     id: 1,
     userID: '1',
@@ -41,7 +43,7 @@ const profiles = [
   },
 ];
 
-const users = {
+const users= {
   1: {
     id: 1,
     name: 'Jane Jones',
@@ -97,6 +99,11 @@ const movies = {
   },
 };
 
+
+
+
+
+
 class App extends Component {
   render() {
     return (
@@ -106,6 +113,7 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <h2>How Popular is Your Favorite Movie?</h2>
+		<MovieList  profilesObject = {profilesArray} moviesObject = {movies} usersObject = {users} />
       </div>
     );
   }
