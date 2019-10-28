@@ -2,21 +2,17 @@ import React, { Component } from 'react'
 
 class MovieList extends Component {
 	render() {
-		return (
-        
-//		console.log('Props', this.props.moviesObject[1].name)
-//		console.log('Props', this.props.profilesObject[0].id)
-          
-			<ul>
-				{this.props.profilesObject.map(prof => (
-                 	<li key ={prof.id}>       
-          				<p>{prof.id}</p>
-          				<p>{this.props.moviesObject[1].name}</p>
-        			</li>
-    			))}
-			</ul>
+		return(
+			<div>
+          		{Object.keys(this.props.moviesObject).map(key => {
+          			const title = this.props.moviesObject[key].name;
+			 		return (
+                 		<h3 key ={this.props.moviesObject[key].id}>{title}</h3>       
+					)
+				})} 
+			</div>
 		)
-	}
-}
+	} 
+} 
 
 export default MovieList 
