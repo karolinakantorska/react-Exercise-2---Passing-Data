@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import MovieList from "./list.js"
+import UI from "./UI.js"
 
 
 /*
@@ -105,6 +105,32 @@ const movies = {
 
 
 class App extends Component {
+  
+  /*
+  The constructor is a "special method for creating and initializing an object."
+  (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). The
+  Component's constructor is the first thing that runs when the object is created.
+  */
+  /*
+  Creating object with movies Id as keys and arrays of users who liked the movie as argumens
+  */
+  
+  constructor (props) {
+  	super(props);
+    this.usersByMovie = {};
+    
+    profilesArray.forEach(profile => {
+      const movieID = profile.favoriteMovieID;   
+
+      if (this.usersByMovie[movieID]){
+        this.usersByMovie[movieID].push(profile.userID);
+      } else {
+        this.usersByMovie[movieID] = [profile.userID];
+      }
+    });
+  }
+
+  
   render() {
     return (
       <div className="App">
@@ -113,7 +139,13 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <h2>How Popular is Your Favorite Movie?</h2>
-		<MovieList  profilesObject = {profilesArray} moviesObject = {movies} usersObject = {users} />
+		<UI   
+			profiles={profilesArray}
+          	movies={movies}
+          	users={users}
+            usersByMovie={this.usersByMovie} 
+		/>
+
       </div>
     );
   }
